@@ -9,7 +9,7 @@
 //   reverseInt(-90) === -9
 
 function reverseInt(n) {
-  if (Math.sign(n) === 1) {
+  const reverseIntWithoutSign = () => {
     return parseInt(
       n
         .toString()
@@ -17,18 +17,16 @@ function reverseInt(n) {
         .reverse()
         .join("")
     );
+  };
+
+  // Math.sign checks if the sign is pos or neg
+  if (Math.sign(n) === 1) {
+    return reverseIntWithoutSign();
   }
 
   if (Math.sign(n) === -1) {
-    return -Math.abs(
-      parseInt(
-        n
-          .toString()
-          .split("")
-          .reverse()
-          .join("")
-      )
-    );
+    // Math.abs returns the number without sign, if it had it before
+    return -Math.abs(reverseIntWithoutSign());
   }
   if (n === 0) {
     return 0;
